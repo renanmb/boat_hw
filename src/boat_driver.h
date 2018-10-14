@@ -15,7 +15,7 @@ using namespace vesc_driver;
 class boat_driver
 {
 public:
-    boat_driver(std::string port, ros::NodeHandle nh, std::string name, disp_pos_mode rotor_position_mode);
+    boat_driver(std::string port, ros::NodeHandle nh, std::string name );
 
     double getSpeed();
     double getVoltageIn();
@@ -31,7 +31,7 @@ private:
     void vescErrorCallback(const std::string& error);
     void timerCallback(const ros::TimerEvent& event);
     ros::Publisher state_pub_;
-    ros::Publisher rotor_position_pub_; // delete
+    
     ros::Timer timer_;
     boost::mutex mutex_;
     double speed;

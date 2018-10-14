@@ -1,7 +1,11 @@
 #include "boat_hw.h"
 #include <iostream>
-#include "controller_manager/controller_manager.h" // delete
-#include <hardware_interface/robot_hw.h> //delete
+
+double max_rpm = 0;
+double min_rpm = 0;
+double throttle_smoother_rate = 0;
+double rpm_to_erpm_gain = 0;
+double max_rpm_acceleration = 0;
 
 int main(int argc, char** argv)
 {
@@ -58,7 +62,6 @@ int main(int argc, char** argv)
   while (ros::ok())
   {
      robot.read(ros::Time::now(),r.cycleTime());
-     cm.update(ros::Time::now(), r.cycleTime());
      robot.write(ros::Time::now(), r.cycleTime());
      r.sleep();
   }

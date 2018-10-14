@@ -6,7 +6,7 @@
 #include <ros/ros.h>
 #include <std_msgs/Float32.h>
 
-boat_driver::boat_driver(std::string port, ros::NodeHandle nh, std::string name, disp_pos_mode rotor_position_mode) :
+boat_driver::boat_driver(std::string port, ros::NodeHandle nh, std::string name ) :
       vesc_(std::string(),boost::bind(&boat_driver::vescPacketCallback, this, _1), boost::bind(&boat_driver::vescErrorCallback, this, _1)),
       driver_mode_(MODE_INITIALIZING), fw_version_major_(-1), fw_version_minor_(-1)
 {
@@ -28,7 +28,6 @@ boat_driver::boat_driver(std::string port, ros::NodeHandle nh, std::string name,
     // create a 50Hz timer, used for state machine & polling VESC telemetry
     timer_ = nh.createTimer(ros::Duration(1.0/50.0), &boat_driver::timerCallback, this);
 
-    vesc_.setDetect(rotor_position_mode);
 }
 
 void boat_driver::setSpeed(double speed){
@@ -84,7 +83,6 @@ void boat_driver::vescPacketCallback(const boost::shared_ptr<VescPacket const>& 
     boost::dynamic_pointer_cast<VescPacketValues const>(packet);
     {
       boost::mutex::scoped_lock lock(mutex_);
-      displacement = values->tachometer();
       speed = values->rpm();
       voltageIn = values->v_in();
     }
@@ -131,16 +129,6 @@ double  boat_driver::getVoltageIn()
     return voltageIn;
   }
 }
-
-// do not need displacement ------------------------
-double boat_driver::getDisplacement()
-{
-  {
-    boost::mutex::scoped_lock lock(mutex_);
-    return displacement;
-  }
-}
-// -------------------------------------------------
 
 void boat_driver::vescErrorCallback(const std::string& error)
 {

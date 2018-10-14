@@ -2,7 +2,7 @@
 #include "boat_driver.h"
 
 #include <math.h>
-#include <boat_controller/boat_controller.msg>
+#include <boat_controller/Drive.msg>
 
 float cmd_vel_left = 0;
 float cmd_vel_right = 0;
@@ -12,8 +12,8 @@ float desired_rpm_right = 0;
 namespace boat {
 
 BOAT_HW::BOAT_HW(std::string right_thruster_port, std::string left_thruster_port, double max_rpm_acceleration, double max_rpm, double min_rpm, double throttle_smoother_rate, double rpm_to_erpm_gain, ros::NodeHandle nh) :
-  _right_thruster_driver(right_thruster_port, nh, "right_thruster", rotor_position_source),
-  _left_thruster_driver(left_thruster_port, nh, "left_thruster", rotor_position_source)
+  _right_thruster_driver(right_thruster_port, nh, "right_thruster"),
+  _left_thruster_driver(left_thruster_port, nh, "left_thruster")
  {
 
      max_accel = max_rpm_acceleration;
