@@ -98,7 +98,7 @@ find_package(catkin REQUIRED COMPONENTS vesc_driver vesc_msgs controller_manager
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES morph_hw
-  CATKIN_DEPENDS vesc_driver vesc_msgs
+  CATKIN_DEPENDS vesc_driver vesc_msgs boat_controller
 #  DEPENDS system_lib
 )
 
@@ -135,6 +135,9 @@ add_dependencies(robot ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot
   ${catkin_LIBRARIES}
   vesc_driver_nodelet
+  ${boat_controller}
+#  add_library(${PROJECT_NAME}
+  src/${boat_controller}/Drive.msg
   #controller_manager
 )
 ## Add cmake target dependencies of the executable
