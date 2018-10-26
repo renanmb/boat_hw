@@ -1,0 +1,18 @@
+
+
+In file included from /home/renan/rostest_ws/src/boat_hw/src/robot.cpp:1:0:
+/home/renan/rostest_ws/src/boat_hw/src/boat_hw.h:5:37: fatal error: boat_controller/Drive.msg: No such file or directory
+In file included from /home/renan/rostest_ws/src/boat_hw/src/boat_hw.cpp:1:0:
+/home/renan/rostest_ws/src/boat_hw/src/boat_hw.h:5:37: fatal error: boat_controller/Drive.msg: No such file or directory
+compilation terminated.
+compilation terminated.
+boat_hw/CMakeFiles/robot.dir/build.make:62: recipe for target 'boat_hw/CMakeFiles/robot.dir/src/robot.cpp.o' failed
+make[2]: *** [boat_hw/CMakeFiles/robot.dir/src/robot.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+boat_hw/CMakeFiles/robot.dir/build.make:86: recipe for target 'boat_hw/CMakeFiles/robot.dir/src/boat_hw.cpp.o' failed
+make[2]: *** [boat_hw/CMakeFiles/robot.dir/src/boat_hw.cpp.o] Error 1
+CMakeFiles/Makefile2:4519: recipe for target 'boat_hw/CMakeFiles/robot.dir/all' failed
+make[1]: *** [boat_hw/CMakeFiles/robot.dir/all] Error 2
+Makefile:138: recipe for target 'all' failed
+make: *** [all] Error 2
+Invoking "make -j6 -l6" failed
