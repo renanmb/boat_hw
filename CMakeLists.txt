@@ -4,7 +4,15 @@ project(boat_hw)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS vesc_driver vesc_msgs controller_manager)
+find_package(catkin REQUIRED COMPONENTS 
+vesc_driver 
+vesc_msgs 
+controller_manager 
+##boat_controller 
+geometry_msgs
+roscpp
+#message_generation
+)
 
 ## System dependencies are found with CMake's conventions
 #find_package(Boost REQUIRED COMPONENTS system)
@@ -42,6 +50,7 @@ find_package(catkin REQUIRED COMPONENTS vesc_driver vesc_msgs controller_manager
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
+#   Drive.msg
 #   Message1.msg
 #   Message2.msg
 # )
@@ -63,7 +72,8 @@ find_package(catkin REQUIRED COMPONENTS vesc_driver vesc_msgs controller_manager
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   std_msgs 
+#   boat_controller # Or other packages containing msgs
 # )
 
 ################################################
@@ -98,8 +108,8 @@ find_package(catkin REQUIRED COMPONENTS vesc_driver vesc_msgs controller_manager
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES morph_hw
-  CATKIN_DEPENDS vesc_driver vesc_msgs boat_controller
-#  DEPENDS system_lib
+  CATKIN_DEPENDS roscpp geometry_msgs vesc_driver vesc_msgs #boat_controller #message_runtime
+  DEPENDS system_lib
 )
 
 ###########
@@ -137,7 +147,7 @@ target_link_libraries(robot
   vesc_driver_nodelet
   ${boat_controller}
 #  add_library(${PROJECT_NAME}
-  src/${boat_controller}/Drive.msg
+  #src/${boat_controller}/Drive.msg
   #controller_manager
 )
 ## Add cmake target dependencies of the executable

@@ -11,18 +11,19 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>controller_manager</build_depend>
-
+  <build_depend>geometry_msgs</build_depend>
   <build_depend>vesc_driver</build_depend>
   <build_depend>vesc_msgs</build_depend>
-  <build_depend>boat_controller</build_depend>	
-
+<!--  <build_depend>boat_controller</build_depend> -->	
+<!--  <build_depend>message_generation</build_depend> -->
 
   <run_depend>roscpp</run_depend>
 
   <run_depend>vesc_driver</run_depend>
   <run_depend>vesc_msgs</run_depend>
-  <run_depend>boat_controller</run_depend>
-
+  <run_depend>geometry_msgs</run_depend>
+<!--  <run_depend>message_runtime</run_depend> -->
+<!--  <run_depend>boat_controller</run_depend> -->
   <export>
   </export>
 </package>
