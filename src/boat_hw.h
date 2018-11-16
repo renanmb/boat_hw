@@ -2,7 +2,7 @@
 #define BOAT_HW_H
 #include "boat_hw.h"
 #include "boat_driver.h"
-#include <boat_controller/Drive.msg>
+#include <geometry_msgs/Twist.h>
 
 namespace boat
 {
@@ -30,7 +30,7 @@ private:
 
   // ROS callbacks
 
-  void speedCallback(const boat_controller::Drive::ConstPtr& speed); //fix this
+  void speedCallback(const geometry_msgs::Twist& speed); //fix this
 
 
 };

@@ -2,12 +2,17 @@
 #include "boat_driver.h"
 
 #include <math.h>
-#include <boat_controller/Drive.msg>
+#include <geometry_msgs/Twist.h>
 
 float cmd_vel_left = 0;
 float cmd_vel_right = 0;
 float desired_rpm_left = 0;
 float desired_rpm_right = 0;
+double max_accel = 0;
+double _max_rpm = 0;
+double _min_rpm = 0;
+double _throttle_smoother_rate = 0;
+double _rpm_to_erpm_gain = 0;
 
 namespace boat {
 
@@ -27,10 +32,10 @@ BOAT_HW::BOAT_HW(std::string right_thruster_port, std::string left_thruster_port
     }
 
 
-  void BOAT_HW::speedCallback(const boat_controller::Drive::ConstPtr& speed){
+  void BOAT_HW::speedCallback(const geometry_msgs::Twist& speed){
 
-	  cmd_vel_left = speed.left;
-	  cmd_vel_right = speed.right;
+	  cmd_vel_left = speed.linear.x; //left
+	  cmd_vel_right = speed.linear.y; //right
 
 	  desired_rpm_left = _max_rpm*cmd_vel_left;
 	  desired_rpm_right = _max_rpm*cmd_vel_right;
